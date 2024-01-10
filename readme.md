@@ -17,6 +17,8 @@ More info about CPU:
 ## Details:
 - UART Pins : TX - R8, RX - T7
 - UART Speed: 19200
+- CPU Clock at 27 MHZ
+- DDR Clock at 200 MHz
 
 ## Howto build
 For flashing I'm using [openFPGALoader](https://github.com/trabucayre/openFPGALoader).  
@@ -109,3 +111,47 @@ write:
 
 ## Other
 Issues, ideas => feel free and issue a ticket or contribute
+
+
+## Resource usage
+Note: this is resource usage NEORV32 + default DMEM & IMEM + DDR Controller
+```
+  ----------------------------------------------------------
+  Resources                   | Usage
+  ----------------------------------------------------------
+  Logic                       | 9940/20736  48%
+    --LUT,ALU,ROM16           | 9142(8279 LUT, 863 ALU, 0 ROM16)
+    --SSRAM(RAM16)            | 133
+  Register                    | 6089/16173  38%
+    --Logic Register as Latch | 0/15552  0%
+    --Logic Register as FF    | 6082/15552  40%
+    --I/O Register as Latch   | 0/621  0%
+    --I/O Register as FF      | 7/621  2%
+  CLS                         | 6852/10368  67%
+  I/O Port                    | 59
+  I/O Buf                     | 56
+    --Input Buf               | 7
+    --Output Buf              | 31
+    --Inout Buf               | 18
+  IOLOGIC                     | 58%
+    --IDES8_MEM               | 16
+    --OSER8                   | 24
+    --OSER8_MEM               | 20
+    --IODELAY                 | 16
+  BSRAM                       | 61%
+    --SP                      | 12
+    --SDPB                    | 7
+    --SDPX9B                  | 4
+    --pROMX9                  | 5
+  DSP                         | 17%
+    --MULT36X36               | 2
+  PLL                         | 1/4  25%
+  DCS                         | 0/8  0%
+  DQCE                        | 0/24  0%
+  OSC                         | 0/1  0%
+  CLKDIV                      | 1/8  13%
+  DLLDLY                      | 0/8  0%
+  DQS                         | 2/9  23%
+  DHCEN                       | 1/16  7%
+  ==========================================================
+```
